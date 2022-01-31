@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Simple UI/Simple UI/Samples/Achievements.unity
+  isLoaded: 1
+  isActive: 1

@@ -17,10 +17,10 @@ public class Mine : MonoBehaviour,IPointerClickHandler
         //btn.onClick.AddListener(Click);
     }
 
-    void Click()
-    {
-        ctrl.SendMessage("Clear", idx);
-    }
+    //void Click()
+    //{
+    //    ctrl.SendMessage("Clear", idx);
+    //}
         
 
     public void SetIdx(int i)
@@ -56,11 +56,12 @@ public class Mine : MonoBehaviour,IPointerClickHandler
         GetComponent<Image>().color = Color.gray;
         GetComponentInChildren<Text>().text = txt;
         GetComponentInChildren<Text>().color = c;
+
     }
 
     public void OnPointerClick(PointerEventData evenData)
     {
-        Debug.Log(evenData);
+        //Debug.Log(evenData);
         ctrl.SendMessage("Clear", idx);
     }
 

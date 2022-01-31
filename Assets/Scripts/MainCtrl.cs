@@ -53,8 +53,6 @@ public class MainCtrl : MonoBehaviour
         isInit = true;
     }
 
-
-
     void DelayCall()
     {
         Debug.Log(Time.time);
@@ -257,4 +255,5 @@ public class MainCtrl : MonoBehaviour
             SetMine(xy[0], xy[1], (MineType)type);
         }
     }
+    
 }

@@ -30,6 +30,11 @@ public class Mine : MonoBehaviour,IPointerClickHandler
 
     public void SetFlag(string flag)
     {
+        if (isMarked)
+        {
+            Debug.Log(idx+"is marked");
+            return;
+        }
         Color c;
         string txt;
         switch (flag)

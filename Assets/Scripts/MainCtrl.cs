@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 enum MineType
 {
@@ -33,8 +33,15 @@ public class MainCtrl : MonoBehaviour
     void Start()
     {
         Debug.Log("Main ctrl call.");
-        Tips.text = "Welcome to my game <color=orange>user</color>";
+        Tips.text = "Score <color=orange>0</color>";
         Invoke("DelayCall", 2f);
+
+        Init();
+
+    }
+
+    void Init()
+    {
         int maxNum = m_width * m_height;
 
         m_field = new MineType[maxNum];
@@ -61,8 +68,14 @@ public class MainCtrl : MonoBehaviour
 
     public void Reset()
     {
-        AllMines[0].SendMessage("ChangeColor");
+        //AllMines[0].SendMessage("SetFlag", "Empty");
         //RandomeMine();
+        foreach (Transform item in MineZone.transform)
+        {
+            //Debug.Log(item);
+            Destroy(item.gameObject);
+        }
+        Init();
     }
 
 
@@ -255,5 +268,11 @@ public class MainCtrl : MonoBehaviour
             SetMine(xy[0], xy[1], (MineType)type);
         }
     }
+
     
+    public void GotoLogin()
+    {
+        SceneManager.LoadScene("Login");
+    }
+
 }

@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Mine : MonoBehaviour,IPointerClickHandler
 {
     int idx;
+
+    bool isMarked;
 
     MainCtrl ctrl;
 
@@ -15,13 +15,7 @@ public class Mine : MonoBehaviour,IPointerClickHandler
         //GetComponent<Image>().color = Color.blue;
         var btn = gameObject.AddComponent<Button>();
         //btn.onClick.AddListener(Click);
-    }
-
-    //void Click()
-    //{
-    //    ctrl.SendMessage("Clear", idx);
-    //}
-        
+    }        
 
     public void SetIdx(int i)
     {
@@ -59,10 +53,36 @@ public class Mine : MonoBehaviour,IPointerClickHandler
 
     }
 
+    public void Mark()
+    {
+        isMarked = true;
+        GetComponentInChildren<Text>().text = "F";
+    }
+
+    public void UnMark()
+    {
+        isMarked = false;
+        GetComponentInChildren<Text>().text = "";
+    }
+
     public void OnPointerClick(PointerEventData evenData)
     {
         //Debug.Log(evenData);
-        ctrl.SendMessage("Clear", idx);
+        if (evenData.button == PointerEventData.InputButton.Right)
+        {
+            if (isMarked)
+            {
+                UnMark();
+            }
+            else
+            {
+                Mark();
+            }
+        }
+        else
+        {
+            ctrl.SendMessage("Clear", idx);
+        }
     }
 
 }
